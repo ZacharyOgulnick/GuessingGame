@@ -64,7 +64,7 @@ int main()
                 cout << "Congratulations " << playerName << "! You won $" << playerBet * 2 << ".\n";
                 cout << "New balance is $" << playerBalance + (playerBet * 2) << ".\n";
                 playerBalance = playerBalance + (playerBet * 2);
-                cout << "Play again? Y to continue or N to quit. ";
+                cout << "Play again? Enter P to play again or any other key to quit. ";
                 cin >> choice;
             }   
             else
