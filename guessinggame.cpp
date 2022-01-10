@@ -22,6 +22,7 @@ int main()
     srand(seed);
     
     rules();
+    
     cout << "Want to play? Enter Y to continue, or N to quit. ";
     cin >> choice;
 
@@ -38,34 +39,44 @@ int main()
         cout << "Initial deposit: ";
         cin >> playerBalance;
 
-        cout << "Make a guess between 1 and 10. ";
-        cin >> numberGuess;
-        while (numberGuess > 10 || numberGuess < 1)
+        do
         {
-            cout << "Invalid guess. Please try again. ";
+            cout << "Make a guess between 1 and 10. ";
             cin >> numberGuess;
-        }
+            while (numberGuess > 10 || numberGuess < 1)
+            {
+                cout << "Invalid guess. Please try again. ";
+                cin >> numberGuess;
+            }
 
-        cout << "How much do you want to bet? ";
-        cin >> playerBet;
-        while (playerBet > playerBalance || playerBet < 1)
-        {
-            cout << "Invalid bet. Please try again. ";
+            cout << "How much do you want to bet? ";
             cin >> playerBet;
-        }
+            while (playerBet > playerBalance || playerBet < 1)
+            {
+                cout << "Invalid bet. Please try again. ";
+                cin >> playerBet;
+            }
 
-        numberResult = (rand() % (maxValue - minValue + 1) + minValue);
+            numberResult = (rand() % (maxValue - minValue + 1) + minValue);
 
-        if (numberGuess == numberResult)
-        {
-            cout << "Congratulations " << playerName << "! You won $" << playerBet * 2 << ".\n";
-            cout << "New balance is $" << playerBalance + (playerBet * 2) << ".";
+            if (numberGuess == numberResult)
+            {
+                cout << "Congratulations " << playerName << "! You won $" << playerBet * 2 << ".\n";
+                cout << "New balance is $" << playerBalance + (playerBet * 2) << ".\n";
+                playerBalance = playerBalance + (playerBet * 2);
+                cout << "Play again? Y to continue or N to quit. ";
+                cin >> choice;
+            }   
+            else
+            {
+                cout << "Sorry you lose! New balance is $" << playerBalance - playerBet << ".\n";
+                cout << "Play again? Enter P to play again or any other key to quit. ";
+                playerBalance = playerBalance - playerBet;
+                cin >> choice;
+            }
         }
-        else
-        {
-            cout << "Sorry you lose! New balance is $" << playerBalance - playerBet << ".";
-        }
-    
+        while (choice == 'P' || choice == 'p');
+
     }
     else if (choice == 'N' || choice == 'n')
     {
